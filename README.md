@@ -1,2 +1,2 @@
-# python_data
-Python data study
+# python_datasci
+Python Data Science &amp; Machine Learning self study
