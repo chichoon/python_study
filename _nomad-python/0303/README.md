@@ -1,4 +1,5 @@
 # 3월 3일 (수요일) Python 챌린지 9
+vscode python 환경에서 templates 읽어오지 못하는 문제 때문에 jupyter notebook 사용
    
 ## Flask
 - 파이썬으로 웹사이트를 만들 수 있게 해주는 micro framework
