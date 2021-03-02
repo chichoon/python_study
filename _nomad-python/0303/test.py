@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
+from sof_func import get_jobs as sof_get_jobs
+from indeed_func import get_jobs as indeed_get_jobs
 
-app = Flask("Python", template_folder="templates")
+app = Flask("Python")
 
 @app.route("/")
 def home():
@@ -22,8 +24,22 @@ def usr(username):
 
 @app.route("/report")
 def report():
-    return "this is report"
+    word = request.args.get("word")
+    #word 에 해당하는 query argument를 가져옴 (form에서 입력받은 값)
+    #request.args는 dictionary를 return하므로, get 이용하여 key에 해당하는 value 추출
+    if word:
+        word = word.lower()
+        #word에 값이 존재할 때 소문자로 변환
+        jobs = sof_get_jobs(word) + indeed_get_jobs(word)
+        print(jobs)
+        #
+    else:
+        return redirect("/")
+        #값이 없으면 root로 리다이렉트
+    return render_template("report.html", SearchingBy=word)
+    #SearchingBy 변수를 report.html에 넘겨주며 실행시킴
 
 app.run(host="127.0.0.1", port="5000")
 #repl.it 사용 시에는 host="0.0.0.0"
 #vscode 이용하여 localhost 접속시에는 127.0.0.1 (기본값)
+
