@@ -1,4 +1,4 @@
-# 3월 1일 (월요일) Python 챌린지 7
+# 3월 2일 (화요일) Python 챌린지 8
    
 ## Django
 - Python 기반 웹 프레임워크

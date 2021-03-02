@@ -59,10 +59,18 @@ print(yattong)
 
 class MaleCat(Cat):
     #Cat class inherit
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        #부모 class의 __init__ method를 상속받을 땐 super() 사용
+        #(super()은 부모 class를 가리킴)
+        self.wild = kwargs.get("wild", True)
+        #상속받은 뒤에 추가로 뭘 더 붙일 수도 있음
     def angry(self):
         print("meow meow")
+    #method도 추가 가능 (기존에 있던 method도 모두 계승)
 
-raegi = MaleCat()
+raegi = MaleCat(wild = False)
+print(raegi.wild)
 raegi.angry()
 raegi.cry()
 #MaleCat이라는 class는 Cat class를 상속받으므로, Cat 내의 모든 요소를 사용가능하고
