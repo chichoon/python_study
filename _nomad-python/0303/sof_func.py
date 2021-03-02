@@ -1,11 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = "https://stackoverflow.com/jobs?q=python&sort=i"
 
-
-def extract_pages():
-    result = requests.get(URL)
+def extract_pages(url):
+    result = requests.get(url)
     soup = BeautifulSoup(result.text, "html.parser")
 
     print(soup.title.string)
@@ -34,11 +32,11 @@ def extract_jobs(html):
             }
 
 
-def save_jobs(last_page):
+def save_jobs(url, last_page):
     jobs = []
     for page in range(last_page):
         print(f"☆Scrapping page {page} :")
-        result = requests.get(f"{URL}&pg={page + 1}")
+        result = requests.get(f"{url}&pg={page + 1}")
         soup = BeautifulSoup(result.text, "html.parser")
         results = soup.find_all("div", {"class":"-job"})
         for res in results:
@@ -47,8 +45,9 @@ def save_jobs(last_page):
 
 
 
-def get_jobs():
+def get_jobs(word):
+    url = f"https://stackoverflow.com/jobs?q={word}&sort=i"
     jobs = []
-    max_pages = extract_pages()
-    jobs = save_jobs(max_pages)
+    max_pages = extract_pages(url)
+    jobs = save_jobs(url, max_pages)
     return jobs

@@ -2,10 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 
 LIMIT = 50
-URL = "https://kr.indeed.com/jobs?q=python"
 
-def extract_pages():
-    result = requests.get(URL)
+def extract_pages(url):
+    result = requests.get(url)
     soup = BeautifulSoup(result.text, "html.parser")
 
     print(soup.title.string) #page title
@@ -54,11 +53,11 @@ def extract_job(html):
     #딕셔너리 return
     
 
-def save_jobs(last_page):
+def save_jobs(url, last_page):
     jobs = [] #빈 리스트 선언
     for page in range(last_page):
         print(f"★Scrapping page {page} :")
-        result = requests.get(f"{URL}&start={LIMIT * page}")
+        result = requests.get(f"{url}&start={LIMIT * page}")
         soup = BeautifulSoup(result.text, "html.parser")
         #각 페이지마다 soup 이용해서 html 파싱
         results = soup.find_all("div", {"class": "jobsearch-SerpJobCard"})
@@ -69,7 +68,8 @@ def save_jobs(last_page):
     return jobs
 
 
-def get_jobs():
-    max_pages = extract_pages()
-    jobs = save_jobs(max_pages)
+def get_jobs(word):
+    url = f"https://kr.indeed.com/jobs?q={word}"
+    max_pages = extract_pages(url)
+    jobs = save_jobs(url, max_pages)
     return jobs
