@@ -5,7 +5,13 @@
     </head>
     <body>
         <h1>Job Search</h1>
-        <form><input placeholder="What job do you want to find?" required />
-        <button>Search!</button>
+        <form action="/report" method="get">
+            <!--form에 글자를 적고 버튼을 누르면 
+                "주소/report?word=입력한글자" 페이지로 넘어감
+                사실 주소/report까지가 주소고 뒤에 붙은 건 옵션임
+                이러한 옵션들이 query argument라고 부름-->
+            <input placeholder="Search for a job?" required name="word" />
+            <button>Search!</button>            
+        </form>
     </body>
 </html>

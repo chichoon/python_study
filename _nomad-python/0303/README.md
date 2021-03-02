@@ -14,3 +14,8 @@ vscode python 환경에서 templates 읽어오지 못하는 문제 때문에 jup
     - 예시: @app.route("/") def blabla(): return "hello"
     - Flask로 만든 간단한 홈페이지의 루트 폴더에 접근했을 때 blabla 함수를 실행한다
 - @ 기호로 시작하는 데코레이터 라인 바로 아래 줄에는 함수만이 올 수 있으며, 함수 외의 것들을 적으면 에러가 난다
+
+## Query arguments
+- 주소 뒤에 ?word=example 식으로 붙은 항목들
+- 이것들을 argument로 사용해서 함수 등을 실행하고 결과를 출력하거나 한다
+- Placeholder와는 약간 다른 개념인데, 해당 값들을 받아올 땐 request를 사용

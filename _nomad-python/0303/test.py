@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask("Python", template_folder="templates")
 
@@ -19,6 +19,10 @@ def usr(username):
     return f"hello, {username}!"
 #<> 는 Placeholder로, 안에 들은 값이 밑의 함수의 인자로 들어간다
 #이렇게 입력했을 경우, 127.0.0.1:5000/이름 입력하면 hello, 이름! 이라고 화면에 표시됨
+
+@app.route("/report")
+def report():
+    return "this is report"
 
 app.run(host="127.0.0.1", port="5000")
 #repl.it 사용 시에는 host="0.0.0.0"
