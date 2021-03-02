@@ -19,8 +19,10 @@ test(hello=True, name="chichoon", family = True)
 
 #################################################
 class Cat():
-    def __init__(self, name):
-        self.name = name    
+    def __init__(self, **kwargs):
+        self.name = kwargs.get("name", "cat")
+        #**kwargs로 값을 키와 함께 받아올 때 이것을 parse해서 변수에 넣어줄 수도 있음
+        #기본값은 cat으로 설정한 것
         self.animal = True
         self.leg = 4
         self.cute = True
@@ -37,10 +39,10 @@ class Cat():
     #cry Method 생성 
 #Class 한 개 생성
 
-yattong = Cat("yattong")
+yattong = Cat(name = "yattong")
 yattong.color = "mackerel"
 #Instance 하나 생성
-samsaek = Cat("samsaek")
+samsaek = Cat(name = "samsaek")
 samsaek.color = "yellow-black-white"
 #Instance 하나 더 생성
 
@@ -54,3 +56,14 @@ print(yattong)
 #__str__이 호출됨 : instance를 string처럼 불러오려 할때
 #이러한 숨겨진 method들은 내가 재정의해서 쓸 수도 있음 
 #(__init__ 처럼 instance 생성 시에 동작하도록 재정의 등)
+
+class MaleCat(Cat):
+    #Cat class inherit
+    def angry(self):
+        print("meow meow")
+
+raegi = MaleCat()
+raegi.angry()
+raegi.cry()
+#MaleCat이라는 class는 Cat class를 상속받으므로, Cat 내의 모든 요소를 사용가능하고
+#추가적으로 붙은 요소들까지 이용 가능

@@ -25,3 +25,6 @@
     - 예를 들면 __init__은 Instance가 처음 생성될 때 실행
     - __str__은 Instance를 string처럼 이용하려 할 때 실행 (print(Instance) 등)
     - 이러한 기본 method들은 override해서 자기가 원하는 방식대로 동작하도록 재정의할 수 있음
+
+## 클래스 상속 (Inheritance)
+- 기존의 Class에 있던 method와 변수 등을 그대로 계승하면서 새로운 요소를 덧붙이고 싶을 때 사용
