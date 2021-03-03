@@ -40,7 +40,7 @@ def report():
         else:
             #데이터베이스에 자료가 없을 경우
             jobs = sof_get_jobs(word) + indeed_get_jobs(word)
-        db[word] =jobs
+        db[word] = jobs
         #데이터베이스에 등록
     else:
         return redirect("/")
