@@ -33,10 +33,10 @@ def report():
     if word:
         word = word.lower()
         #word에 값이 존재할 때 소문자로 변환
-        fromdb = db.get(word)
-        if fromdb:
+        existing_jobs = db.get(word)
+        if existing_jobs:
             #이미 데이터베이스에 word가 존재할 경우
-            jobs = fromdb
+            jobs = existing_jobs
         else:
             #데이터베이스에 자료가 없을 경우
             jobs = sof_get_jobs(word) + indeed_get_jobs(word)
@@ -45,7 +45,11 @@ def report():
     else:
         return redirect("/")
         #값이 없으면 root로 리다이렉트
-    return render_template("report.html", SearchingBy=word, resultsNum=len(jobs))
+    return render_template(
+        "report.html", 
+        SearchingBy=word, 
+        resultsNum=len(jobs),
+        jobs=jobs)
     #SearchingBy 변수를 report.html에 넘겨주며 실행시킴
 
 app.run(host="127.0.0.1", port="5000")
