@@ -4,6 +4,9 @@ from indeed_func import get_jobs as indeed_get_jobs
 
 app = Flask("Python")
 
+db = {}
+#fake db
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -30,13 +33,19 @@ def report():
     if word:
         word = word.lower()
         #word에 값이 존재할 때 소문자로 변환
-        jobs = sof_get_jobs(word) + indeed_get_jobs(word)
-        print(jobs)
-        #
+        fromdb = db.get(word)
+        if fromdb:
+            #이미 데이터베이스에 word가 존재할 경우
+            jobs = fromdb
+        else:
+            #데이터베이스에 자료가 없을 경우
+            jobs = sof_get_jobs(word) + indeed_get_jobs(word)
+        db[word] =jobs
+        #데이터베이스에 등록
     else:
         return redirect("/")
         #값이 없으면 root로 리다이렉트
-    return render_template("report.html", SearchingBy=word)
+    return render_template("report.html", SearchingBy=word, resultsNum=len(jobs))
     #SearchingBy 변수를 report.html에 넘겨주며 실행시킴
 
 app.run(host="127.0.0.1", port="5000")
