@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 from sof_func import get_jobs as sof_get_jobs
 from indeed_func import get_jobs as indeed_get_jobs
 from save_func import save_to_file
@@ -53,7 +53,7 @@ def report():
         jobs=jobs)
     #SearchingBy 변수를 report.html에 넘겨주며 실행시킴
 
-app.route("/export")
+@app.route("/export")
 def export():
     try:
         word = request.args.get("word")
@@ -69,7 +69,7 @@ def export():
             raise Exception()
             #위와 같은 에러 처리
         save_to_file(jobs, word)
-        return f"Generate CSV for {word}"
+        return send_file(word + ".csv")
     except:
         return redirect("/")
         #word에 값이 없을 경우 (빈칸일 경우) 홈으로 되돌아감
