@@ -13,9 +13,15 @@
     </header>
     {% for job in jobs: %}
     <h5>From {{job.site}}</h5>
-    <div><h3>{{job.title}}</h3></div>
-    <div><h4>{{job.company}}</h4></div>
-    <a href="{{job.link}}" target="_blank">Apply </a>
+    <div>
+      <h3><u>{{job.title}}</u></h3>
+    </div>
+    <div>
+      <span
+        ><b>{{job.company}}</b> ◆
+        <a href="{{job.link}}" target="_blank">Apply </a>
+      </span>
+    </div>
     <hr />
     {% endfor %}
   </body>

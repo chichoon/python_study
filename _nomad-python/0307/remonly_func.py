@@ -23,7 +23,7 @@ def save_jobs(url):
                 "title": title,
                 "company": company,
                 "link": link,
-                "site" : "♠ Remote Only"
+                "site" : "♠ RemoteOnly"
                 })
     return job_list
 
