@@ -6,7 +6,7 @@
       section {
         display: grid;
         gap: 20px;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       } /*CSS 스타일 지정 파트
       해당 부분은 CSS 문법을 적용받으므로
       주석도 <!----> 사용 불가*/
@@ -22,12 +22,10 @@
     <section>
       <h4>Title</h4>
       <h4>Company</h4>
-      <h4>Location</h4>
       <h4>Link</h4>
       {% for job in jobs: %}
       <span>{{job.title}}</span>
       <span>{{job.company}}</span>
-      <span>{{job.location}}</span>
       <a href="{{job.link}}" target="_blank">Apply Link</a>
       {% endfor %}
       <!--Flask에서 알아듣도록 python 코드를 html에 입력-->

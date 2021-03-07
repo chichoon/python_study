@@ -27,11 +27,9 @@ def extract_jobs(html):
     #(첫 번째 span에 해당하는 요소만 갖고오게 함)
     #list 내 요소가 2개라는 것을 이미 알고 있으면, 위와 같이 각각의 변수에 값 집어넣을 수 있다
     company = company.get_text(strip=True)
-    location = location.get_text(strip=True)
     job_id = html["data-jobid"]
     return {"title": title, 
             "company": company, 
-            "location": location,
             "link": f"https://stackoverflow.com/jobs/{job_id}"
             }
 

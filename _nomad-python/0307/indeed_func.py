@@ -48,10 +48,13 @@ def extract_job(html):
         #\n 삭제 (줄옮김 삭제)
     else:
         company = None
-    location = html.find("div", {"class": "recJobLoc"})["data-rc-loc"]
     job_id = html["data-jk"]
     #[] 괄호 안에 있는 것 : attribute
-    return {"title" : title, "company" : company, "location" : location, "link" : f"https://www.indeed.com/viewjob?jk={job_id}"}
+    return {
+        "title" : title, 
+        "company" : company, 
+        "link" : f"https://www.indeed.com/viewjob?jk={job_id}"
+        }
     #딕셔너리 return
     
 
