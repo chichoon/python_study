@@ -24,8 +24,9 @@ def save_jobs(url):
                 company = l.find("span", {"class": "company"}).get_text()
                 jobs.append({
                     "title": title,
+                    "company": company,
                     "link": link,
-                    "company": company
+                    "site" : "☆ WeWorkRemotely"
                 })
     return jobs
 

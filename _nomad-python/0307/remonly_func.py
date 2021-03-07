@@ -22,7 +22,8 @@ def save_jobs(url):
             job_list.append({
                 "title": title,
                 "company": company,
-                "link": link
+                "link": link,
+                "site" : "♠ Remote Only"
                 })
     return job_list
 

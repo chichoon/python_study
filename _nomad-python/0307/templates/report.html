@@ -2,33 +2,21 @@
 <html>
   <head>
     <title>Job Search!!</title>
-    <style>
-      section {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(3, 1fr);
-      } /*CSS 스타일 지정 파트
-      해당 부분은 CSS 문법을 적용받으므로
-      주석도 <!----> 사용 불가*/
-    </style>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Results</h1>
-    <h3>Found {{resultsNum}} results for {{SearchingBy}}</h3>
-    <!--{{변수명}} 하면 rendering 이용하여 text 내에 변수를 넣을 수 있음
-            변수는 render_template 이용하여 받아온다-->
-    <a href="/export?word={{SearchingBy}}">Export results to CSV</a>
-    <!--검색한 단어를 export하도록 이동-->
-    <section>
-      <h4>Title</h4>
-      <h4>Company</h4>
-      <h4>Link</h4>
-      {% for job in jobs: %}
-      <span>{{job.title}}</span>
-      <span>{{job.company}}</span>
-      <a href="{{job.link}}" target="_blank">Apply Link</a>
-      {% endfor %}
-      <!--Flask에서 알아듣도록 python 코드를 html에 입력-->
-    </section>
+    <header>
+      <h1>✌Results</h1>
+      <h3>Found ✔{{resultsNum}} results for {{SearchingBy}}</h3>
+      <a href="/export?word={{SearchingBy}}">💾Export results to CSV</a>
+      <h6><a href="/">or go back</a></h6>
+    </header>
+    {% for job in jobs: %}
+    <h5>From {{job.site}}</h5>
+    <div><h3>{{job.title}}</h3></div>
+    <div><h4>{{job.company}}</h4></div>
+    <a href="{{job.link}}" target="_blank">Apply </a>
+    <hr />
+    {% endfor %}
   </body>
 </html>
