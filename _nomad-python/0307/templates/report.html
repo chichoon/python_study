@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search!!</title>
+    <style>
+      section {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+      } /*CSS 스타일 지정 파트
+      해당 부분은 CSS 문법을 적용받으므로
+      주석도 <!----> 사용 불가*/
+    </style>
+  </head>
+  <body>
+    <h1>Results</h1>
+    <h3>Found {{resultsNum}} results for {{SearchingBy}}</h3>
+    <!--{{변수명}} 하면 rendering 이용하여 text 내에 변수를 넣을 수 있음
+            변수는 render_template 이용하여 받아온다-->
+    <a href="/export?word={{SearchingBy}}">Export results to CSV</a>
+    <!--검색한 단어를 export하도록 이동-->
+    <section>
+      <h4>Title</h4>
+      <h4>Company</h4>
+      <h4>Location</h4>
+      <h4>Link</h4>
+      {% for job in jobs: %}
+      <span>{{job.title}}</span>
+      <span>{{job.company}}</span>
+      <span>{{job.location}}</span>
+      <a href="{{job.link}}" target="_blank">Apply Link</a>
+      {% endfor %}
+      <!--Flask에서 알아듣도록 python 코드를 html에 입력-->
+    </section>
+  </body>
+</html>
